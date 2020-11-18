@@ -2,6 +2,8 @@
 
 Trabalho de Programação Web - Agenda de contatos
 
+Link do vídeo: https://www.loom.com/share/fc68ba701b41457f9924f8684f0da3e7
+
 ## Tecnologias:
 
 ### Frontend:
