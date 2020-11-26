@@ -6,10 +6,12 @@ const ContatosServices =  {
         return ApiService.get('api/contatos/listar');
     },
     salvar: async(contato) => {
+        contato.cep = contato.cep.replace("-", "");
         return ApiService.post('api/contatos/salvar/', contato);
     },
     atualizar: async(contato) => {
         //spring não precisa passar o id
+        contato.cep = contato.cep.replace("-", "");
         return ApiService.put('api/contatos/alterar/', contato);
     },
     deletar: async (id) => {
