@@ -2,8 +2,9 @@
 
 Trabalho de Programação Web - Agenda de contatos
 
-Link do vídeo: https://www.loom.com/share/fc68ba701b41457f9924f8684f0da3e7
+Link do vídeo 1 - CRUD: https://www.loom.com/share/fc68ba701b41457f9924f8684f0da3e7
 
+Link do video 2 - Endereço por CEP: https://www.loom.com/share/08f43e4eac2a4a9e84cdaae7edb30595
 ## Tecnologias:
 
 ### Frontend:
