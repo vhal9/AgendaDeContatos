@@ -5,6 +5,8 @@ Trabalho de Programação Web - Agenda de contatos
 Link do vídeo 1 - CRUD: https://www.loom.com/share/fc68ba701b41457f9924f8684f0da3e7
 
 Link do video 2 - Endereço por CEP: https://www.loom.com/share/08f43e4eac2a4a9e84cdaae7edb30595
+
+Link do video 3 - Testes: https://www.loom.com/share/2a5ca7a791cb4845b210d4bd43cfef85
 ## Tecnologias:
 
 ### Frontend:
@@ -45,22 +47,8 @@ Link do video 2 - Endereço por CEP: https://www.loom.com/share/08f43e4eac2a4a9e
   - File -> Open
   - Selecione o arquivo pom.xml na pasta backend
   - Espere o IntelliJ indexar e baixar as dependencias
-#### Executando o Backend
-  - Botão direito do mouse na classe ApirestApplication
-  - Selecione a opção Run
-  
-### Frontend
 
-#### Instalar dependencias:
-
-```bash
-cd frontend
-npm install
-```
-
-#### Executar o frontend
-
-```bash
-npm run serve
-```
+### Testes
+  - Abra a classe src/test/java/com/AgendaDeContatos/apirest/controller/ContatoControllerTest.java
+  - Botão Direito do mouse -> Run "ContratoControllerTest"
 
