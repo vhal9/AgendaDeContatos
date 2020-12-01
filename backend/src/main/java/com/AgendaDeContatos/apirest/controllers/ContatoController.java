@@ -25,7 +25,7 @@ public class ContatoController {
     @CrossOrigin
     @PostMapping("/salvar")
     //salvar contato
-    public ResponseEntity<Contato>  salvarContato(@RequestBody Contato contato){
+    public ResponseEntity<Contato> salvarContato(@RequestBody Contato contato){
         return new ResponseEntity<>(contatoService.salvarContato(contato), HttpStatus.OK);
     }
 

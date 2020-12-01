@@ -3,9 +3,14 @@ package com.AgendaDeContatos.apirest.controller;
 import com.AgendaDeContatos.apirest.Services.ContatoService;
 import com.AgendaDeContatos.apirest.controllers.ContatoController;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.AgendaDeContatos.apirest.models.Contato;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -25,6 +30,9 @@ public class ContatoControllerTest {
     @MockBean
     private ContatoService contatoService;
 
+    @Autowired
+    private ObjectMapper mapper;
+
     @BeforeEach
     public void setup(){
         standaloneSetup(this.contatoController);
@@ -41,7 +49,8 @@ public class ContatoControllerTest {
                 .statusCode(HttpStatus.OK.value());
     }
 
-    @Test void deveRetornarNaoEncontrado_QuandoBuscarContato(){
+    @Test
+    void deveRetornarNaoEncontrado_QuandoBuscarContato(){
         given()
                 .accept(ContentType.JSON)
         .when()
@@ -58,7 +67,7 @@ public class ContatoControllerTest {
         given()
                 .accept(ContentType.JSON)
         .when()
-                .get("/api/contatos/", 1L)
+                .get("/api/contatos/listar")
         .then()
                 .statusCode(HttpStatus.OK.value());
     }
@@ -67,21 +76,35 @@ public class ContatoControllerTest {
         given()
                 .accept(ContentType.JSON)
         .when()
-                .get("/api/contatos/")
+                .get("/api/contatos/listar")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }
 
     @Test
-    public void deveRetornarSucesso_QuandoSalvarContato(){
-        Contato contato = new Contato(1L, "Carlos", "carlos@gmail.com", "33524086", "Rua Chagas", "", 34,"27197000", "Palmares","Rio das Flores", "RJ");
+    public void deveRetornarSucesso_QuandoSalvarContato() throws JSONException {
+        Contato contato = new Contato(null, "Carlos", "carlos@gmail.com", "33524086",
+                "Rua Chagas", "", 34,"27197000", "Palmares","Rio das Flores", "RJ");
         Mockito.when(this.contatoService.salvarContato(contato)).thenReturn(contato);
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("id", null);
+        requestParams.put("nome", "Carlos");
+        requestParams.put("email", "carlos@gmail.com");
+        requestParams.put("telefone", "33524086");
+        requestParams.put("rua", "Rua Chagas");
+        requestParams.put("complemento", "");
+        requestParams.put("cep", "27197000");
+        requestParams.put("numero", "26");
+        requestParams.put("bairro", "Palmeiras");
+        requestParams.put("cidade", "Pinheiral");
+        requestParams.put("estado", "RJ");
         given()
-                .accept(ContentType.JSON)
+                .body(requestParams.toString())
         .when()
-                .post("/api/contatos/salvar", contato)
+                .post("/api/contatos/salvar")
         .then()
                 .statusCode(HttpStatus.OK.value());
+
     }
 
     @Test void deveRetornarNaoEncontrado_QuandoSalvarContatoInvalido(){
