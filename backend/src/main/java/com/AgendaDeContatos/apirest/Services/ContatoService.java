@@ -22,8 +22,16 @@ public class ContatoService {
     public Contato atualizarContato(Contato contato){
         return contatoRepository.save(contato);
     }
-    public void excluirContato(Long id){
+    public Boolean excluirContato(Long id){
+        int count = (int) contatoRepository.count();
         contatoRepository.deleteById(id);
+        if ((contatoRepository.count() < count)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
     public Contato getContato(Long id){
         return contatoRepository.findFirstById(id);

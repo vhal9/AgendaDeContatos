@@ -39,8 +39,9 @@ public class ContatoController {
     @CrossOrigin
     @DeleteMapping("/excluir/{id}")
     //excluir um contato
-    public void excluirContato(@PathVariable Long id){
+    public ResponseEntity<Boolean> excluirContato(@PathVariable Long id){
         contatoService.excluirContato(id);
+        return new ResponseEntity<Boolean>(true,HttpStatus.OK);
     }
 
     @CrossOrigin
